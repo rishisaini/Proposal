@@ -1,0 +1,126 @@
+{
+  "Roles": [
+    {
+      "RoleId": "A",
+      "RoleCode": "ADMIN",
+      "RoleDesc": "Administrator"
+    },
+    {
+      "RoleId": "AM",
+      "RoleCode": "DIRAM",
+      "RoleDesc": "Dir Asset Management"
+    },
+    {
+      "RoleId": "AO",
+      "RoleCode": "AMUOFFICER",
+      "RoleDesc": "DET AMU Officer"
+    },
+    {
+      "RoleId": "D",
+      "RoleCode": "DETAMU",
+      "RoleDesc": "DET AMU Manager"
+    },
+    {
+      "RoleId": "ED",
+      "RoleCode": "EXECDIRECTOR",
+      "RoleDesc": "Executive Director"
+    },
+    {
+      "RoleId": "EM",
+      "RoleCode": "EDAM",
+      "RoleDesc": "ED Asset Management"
+    },
+    {
+      "RoleId": "F",
+      "RoleCode": "SCHOOL",
+      "RoleDesc": "School User"
+    },
+    {
+      "RoleId": "GL",
+      "RoleCode": "GROUPLEADER",
+      "RoleDesc": "Group Leader"
+    },
+    {
+      "RoleId": "SD",
+      "RoleCode": "SCHOOLDIR",
+      "RoleDesc": "School Director"
+    },
+    {
+      "RoleId": "SL",
+      "RoleCode": "SRGRPLEADER",
+      "RoleDesc": "Sr Group Leader"
+    },
+    {
+      "RoleId": "SM",
+      "RoleCode": "SCHOOLMGR",
+      "RoleDesc": "School Manager"
+    },
+    {
+      "RoleId": "SO",
+      "RoleCode": "PMASO",
+      "RoleDesc": "PM Asset Service Officer"
+    }
+  ],
+  "ProposalStatuses": [
+    {
+      "ProposalStatusID": 1,
+      "ProposalStatusDesc": "Logged/Registered"
+    },
+    {
+      "ProposalStatusID": 2,
+      "ProposalStatusDesc": "Cancelled"
+    },
+    {
+      "ProposalStatusID": 3,
+      "ProposalStatusDesc": "Completed"
+    },
+    {
+      "ProposalStatusID": 4,
+      "ProposalStatusDesc": "In Progress"
+    },
+    {
+      "ProposalStatusID": 5,
+      "ProposalStatusDesc": "Awaiting tender submission"
+    },
+    {
+      "ProposalStatusID": 6,
+      "ProposalStatusDesc": "Query Only"
+    },
+    {
+      "ProposalStatusID": 7,
+      "ProposalStatusDesc": "Job inspected, awaiting instruction"
+    },
+    {
+      "ProposalStatusID": 8,
+      "ProposalStatusDesc": "Contractor to be assigned"
+    },
+    {
+      "ProposalStatusID": 9,
+      "ProposalStatusDesc": "Completed, awaiting final approval"
+    },
+    {
+      "ProposalStatusID": 10,
+      "ProposalStatusDesc": "Contractor assigned, awaiting site visit"
+    },
+    {
+      "ProposalStatusID": 11,
+      "ProposalStatusDesc": "Submitted"
+    },
+    {
+      "ProposalStatusID": 12,
+      "ProposalStatusDesc": "Activated"
+    },
+    {
+      "ProposalStatusID": 13,
+      "ProposalStatusDesc": "Progressed"
+    },
+    {
+      "ProposalStatusID": 14,
+      "ProposalStatusDesc": "Transferred"
+    },
+    {
+      "ProposalStatusID": 15,
+      "ProposalStatusDesc": "Archived"
+    }
+  ]
+}
