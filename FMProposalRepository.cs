@@ -1,4 +1,4 @@
-﻿using AssetCare.Model.Common;
+using AssetCare.Model.Common;
 using AssetCare.Model.Models;
 using AssetCare.Model.ViewModels;
 using AssetCare.Repository.Interfaces;
@@ -516,13 +516,13 @@ namespace AssetCare.Repository
                                     CalloutdataToSave.RequesterPosition = user.Role.RoleDescNew;
                                     CalloutdataToSave.RequestedBy = user.FirstName + " " + user.LastName;
                                     CalloutdataToSave.RequesterContact = user.Mobile ?? user.Phone;
-                                    CalloutdataToSave.CallLogTypeID = 4;//Default Proposal
+                                    CalloutdataToSave.CallLogTypeID = dataToSave.PlannedMaintenance? 10: 4;//Default Proposal
                                     CalloutdataToSave.WorkCategoryID = 1;//default
                                     CalloutdataToSave.CallLogStatusID = 1;//Default to Registered
                                     CalloutdataToSave.WorkTypeId = 1;//Default to New(Addition)
                                     CalloutdataToSave.ElementId = 1;//Default to Roof and Roof structure
                                     CalloutdataToSave.HAZMAT = dataToSave.Hazmat == false ? "No" : "Yes";
-
+                                   
                                         //int retryCount = 0;
                                         //while (retryCount < 5)
                                         //{
@@ -1217,8 +1217,8 @@ namespace AssetCare.Repository
                     AMUFundedHidden = data.AMUFunded,
                     CommunityFunded = data.CommunityFunded,
                     CommunityFundedHidden = data.CommunityFunded,
-                    PlannedMaintenance = data.PlannedMaintenance,
-                    DeliveryTypePlannedMaintenanceHidden = data.PlannedMaintenance,
+                   //PlannedMaintenance = data.PlannedMaintenance,
+                    //DeliveryTypePlannedMaintenanceHidden = data.PlannedMaintenance,
                     SchoolSelfDelivery = data.SchoolSelfDelivery,
                     SchoolSelfDeliveryHidden = data.SchoolSelfDelivery,
                     GrantApplication = data.GrantApplication,
@@ -1472,7 +1472,7 @@ namespace AssetCare.Repository
                 SchoolRecurrent = model.SchoolRecurrent,
                 CommunityFunded = model.CommunityFunded != model.CommunityFundedHidden ? model.CommunityFundedHidden : model.CommunityFunded,
                 AMUFunded = model.AMUFunded != model.AMUFundedHidden ? model.AMUFundedHidden : model.AMUFunded,
-                PlannedMaintenance = model.PlannedMaintenance != model.DeliveryTypePlannedMaintenanceHidden ? model.DeliveryTypePlannedMaintenanceHidden : model.PlannedMaintenance,
+               PlannedMaintenance = model.PlannedMaintenance != model.PlannedMaintenanceHidden ? model.PlannedMaintenanceHidden : model.PlannedMaintenance,
                 SchoolSelfDelivery = model.SchoolSelfDelivery != model.SchoolSelfDeliveryHidden ? model.SchoolSelfDeliveryHidden : model.SchoolSelfDelivery,
                 GrantApplication = model.Submitted == true || model.SubmitDisabled == true ? model.GrantApplicationHidden : model.GrantApplication,
 
