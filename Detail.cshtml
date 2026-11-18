@@ -1,4 +1,4 @@
-﻿@model AssetCare.Model.ViewModels.ProposalAddEditViewModel
+@model AssetCare.Model.ViewModels.ProposalAddEditViewModel
 @using AssetCare.Model.ViewModels
 @using AssetCare.Model.Models
 @using AssetCare.Helpers
@@ -157,7 +157,9 @@
                                     @Html.HiddenFor(x => x.SubmittedtDate)
                                     @Html.HiddenFor(x => x.POCDocumentTypeID)
                                     @Html.HiddenFor(x => x.GrantApplicationHidden)
-
+                                     @Html.HiddenFor(x => x.PlannedMaintenance)
+                                      @Html.HiddenFor(x => x.PlannedMaintenanceHidden )
+                                    @Html.Hidden("DisableRemoveFileDel", Model.DisableField("detailsection", "RemoveFileDel"))
                                     @{
                                         if (Model.SubmitDisabled)
                                         {
@@ -384,8 +386,8 @@
                                                                 <label for="communityFunded" style="margin-right:10px; font-size:14px; font-weight: 500 !important;">Community Funded</label>
                                                                 @Html.RadioButtonFor(m => m.AMUFunded, "True", new RouteValueDictionary(new { @id = "amuFunded", @name = "amuFunded", style = "margin-left:5px; margin-right:20px;" }).AddIf(Model.DisableField("detailsection", "amuFunded"), "disabled", "disabled"))
                                                                 <label for="amuFunded" style="margin-right:10px; font-size:14px; font-weight: 500 !important;">DoE Funded</label>
-                                                                @Html.RadioButtonFor(m => m.PlannedMaintenance, "True", new RouteValueDictionary(new { @id = "plannedMaintenance", @name = "plannedMaintenance", style = "margin-left:5px; margin-right:20px;" }).AddIf(Model.DisableField("detailsection", "plannedMaintenance"), "disabled", "disabled"))
-                                                                <label for="plannedMaintenance" style="margin-right:10px; font-size:14px; font-weight: 500 !important;">Planned Maintenance</label>
+                                                                 @Html.RadioButtonFor(m => m.PlannedMaintenance, "True", new RouteValueDictionary(new { @id = "plannedMaintenance", @name = "plannedMaintenance", style = "margin-left:5px; margin-right:20px;" }).AddIf(Model.DisableField("detailsection", "plannedMaintenance"), "disabled", "disabled"))
+        <label for="plannedMaintenance" style="margin-right:10px; font-size:14px; font-weight: 500 !important;">Planned Maintenance</label> 
                                                             </span>
                                                         </span>
                                                     </div>
@@ -2102,8 +2104,8 @@
         $('#divSchoolEndorsement').hide();
     }
         var supportDocuments = @Html.Raw(JsonConvert.SerializeObject(Model.SupportDocuments));
-        //var uploadUrl = '@Url.RouteUrl("DefaultApi", new { httproute = "", controller = "Proposal" })' + "/upload";
-         var uploadUrl = '@Url.RouteUrl("DefaultApi", new { httproute = "", controller = "CallOut" })' + "/upload";
+        var uploadUrl = '@Url.RouteUrl("DefaultApi", new { httproute = "", controller = "Proposal" })' + "/upload";
+         //var uploadUrl = '@Url.RouteUrl("DefaultApi", new { httproute = "", controller = "CallOut" })' + "/upload";
         var maintenanceTaskList = @Html.Raw(JsonConvert.SerializeObject(ViewData["MaintenanceCallLog"]));
         var equipmentType = @Html.Raw(JsonConvert.SerializeObject(ViewData["AssemblyEquipmentTypes"]));
 
