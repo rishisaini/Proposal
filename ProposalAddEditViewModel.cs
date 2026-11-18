@@ -1,4 +1,4 @@
-﻿using AssetCare.Model.Common;
+using AssetCare.Model.Common;
 using AssetCare.Model.Models;
 using ExpressiveAnnotations.Attributes;
 using System;
@@ -231,6 +231,8 @@ namespace AssetCare.Model.ViewModels
         [Required(ErrorMessage = "School fund code is required")]
         public bool SchoolFunded { get; set; }
         public bool SchoolFundedHidden { get; set; }
+        public bool PlannedMaintenance { get; set; }
+        public bool PlannedMaintenanceHidden { get; set; }
         public bool AMUFundedHidden { get; set; }
         public bool CommunityFundedHidden { get; set; }
 
@@ -312,8 +314,6 @@ namespace AssetCare.Model.ViewModels
         public bool DeliveryTypeSSDHidden { get; set; }
         public bool DeliveryTypeAMU { get; set; }
         public bool DeliveryTypeAMUHidden { get; set; }
-        public bool DeliveryTypePlannedMaintenance { get; set; }
-        public bool DeliveryTypePlannedMaintenanceHidden { get; set; }
         public int? CallLogFITSID { get; set; }
 
         public string CallLogSig { get { return TamperHelper.GenerateSignature(CallLogFITSID.HasValue ? CallLogFITSID.Value : 0); } }
@@ -322,7 +322,7 @@ namespace AssetCare.Model.ViewModels
         public int POCDocumentTypeID { get; set; }
         public bool CommunityFunded { get; set; }
         public bool AMUFunded { get; set; }
-        public bool PlannedMaintenance { get; set; }
+        
         
         [Display(Name = "School Self-Delivery?")]
         public bool SchoolSelfDelivery { get; set; }
