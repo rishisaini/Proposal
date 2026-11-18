@@ -1,4 +1,4 @@
-﻿
+
 (function ($) {
     $(document).ready(function () {
 
@@ -95,14 +95,17 @@
             var previousFund = $("#FundsAvailabilityDisabled").val() == "" ? $('#txtFundsAvailibility').val() : $("#FundsAvailabilityDisabled").val();
             $('#amuFunded').prop('checked', false);
             $('#communityFunded').prop('checked', false);
+            $('#plannedMaintenance').prop('checked', false);
             //$("#schoolSelfDelivery").prop("checked", true);
             setDefaultFundingSource('True');
             $('#SchoolFundedHidden').val(true);
             $('#CommunityFundedHidden').val(false);
             $('#AMUFundedHidden').val(false);
+            $('#PlannedMaintenanceHidden').val(false);
+
             $("#SchoolSelfDelivery").prop("disabled", false);
             $('#txtFundsAvailibility').val(previousFund);
-            $('#plannedMaintenance').prop('checked', false);
+         
             //checkSchoolSelfDelivery(true);
             if ($("#txtConceptEstimate").val() > 0)
                 selectProposalProgram();
@@ -111,14 +114,15 @@
             var previousFund = $("#FundsAvailabilityDisabled").val() == "" ? $('#txtFundsAvailibility').val() : $("#FundsAvailabilityDisabled").val();
             $('#amuFunded').prop('checked', false);
             $('#schoolFunded').prop('checked', false);
+            $('#plannedMaintenance').prop('checked', false);
             $("#SchoolSelfDelivery").prop("disabled", false);
             setDefaultFundingSource('True');
             $('#CommunityFundedHidden').val(true);
             $('#SchoolFundedHidden').val(false);
             $('#AMUFundedHidden').val(false);
+            $('#PlannedMaintenanceHidden').val(false);
             //$('#SchoolSelfDeliveryHidden').val(true);
             $('#txtFundsAvailibility').val(previousFund);
-            $('#plannedMaintenance').prop('checked', false);
             //checkSchoolSelfDelivery(true);
             if ($("#txtConceptEstimate").val() > 0)
                 selectProposalProgram();
@@ -132,19 +136,22 @@
             $('#communityFunded').prop('checked', false);
             $('#schoolFunded').prop('checked', false);
 
-            $("#SchoolSelfDelivery").prop("disabled", true);
-            checkSchoolSelfDelivery(false);
-            
-
+            $('#PlannedMaintenanceHidden').val(true);
             $('#AMUFundedHidden').val(false);
             $('#CommunityFundedHidden').val(false);
             $('#SchoolFundedHidden').val(false);
 
+            $("#SchoolSelfDelivery").prop("disabled", true);
+            checkSchoolSelfDelivery(false);
+
             setDefaultFundingSource("True");
+
             $('#txtFundsAvailibility').attr('disabled', 'disabled');
             $('#txtFundsAvailibility').val('');
 
-            
+            // Planned Maintenance should also be allowed to use LRLV.
+            applyLRLVFundRule(true);
+
             if ($("#txtConceptEstimate").val() > 0)
                 selectProposalProgram();
         });
@@ -154,13 +161,15 @@
             $("#SchoolSelfDelivery").prop("disabled", true);
             $('#communityFunded').prop('checked', false);
             $('#schoolFunded').prop('checked', false);
+            $('#plannedMaintenance').prop('checked', false);
+
             setDefaultFundingSource("True");
             $('#AMUFundedHidden').val(true);
             $('#txtFundsAvailibility').attr('disabled', 'disabled');
             $('#txtFundsAvailibility').val('');
             $('#CommunityFundedHidden').val(false);
             $('#SchoolFundedHidden').val(false);
-            $('#plannedMaintenance').prop('checked', false);
+            $('#PlannedMaintenanceHidden').val(false);
             //$('#SchoolSelfDeliveryHidden').val(false);
             checkSchoolSelfDelivery(false);
             if ($("#txtConceptEstimate").val() > 0)
@@ -713,10 +722,15 @@
             var fundText = $.trim($('#schoolFundCode option:selected').text());
             var isConsolidatedFund = fundText.indexOf('6100') === 0;
 
-            $lrlv.prop('disabled', !(deliveryTypeEditable && isConsolidatedFund));
-            $lrlvLabel.css('opacity', isConsolidatedFund ? 1 : 0.5);
+            var isPlannedMaintenance =
+                $('#PlannedMaintenanceHidden').val() == "True";
 
-            if (!isConsolidatedFund && clearIfInvalid && $lrlv.is(':checked')) {
+            var isLrlvAllowed = isConsolidatedFund || isPlannedMaintenance;
+
+            $lrlv.prop('disabled', !(deliveryTypeEditable && isLrlvAllowed));
+            $lrlvLabel.css('opacity', isLrlvAllowed ? 1 : 0.5);
+
+            if (!isLrlvAllowed && clearIfInvalid && $lrlv.is(':checked')) {
                 $lrlv.prop('checked', false);
                 $('#DeliveryTypeLRLVHidden').val(false);
             }
@@ -1617,12 +1631,14 @@
             var documentType = $('#documentTypeSelectList  option:selected').text();
             var uploadedFileName = filePath.split('/').pop();
             var table = $('#proposalDocumentList').DataTable();
+            var disableRemoveFileDel = $('#DisableRemoveFileDel').val() == 'True';
+            var deleteButton = disableRemoveFileDel ? '' : '<a href="#" onclick="return remove(this,' + documentId.toString() + ');"><i class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete the callout" style="font-size:21px; margin-top:-3px; margin-left:16px;"></i></a>';
+
             table.row.add([
-                '<a href="#" onclick="return remove(this,' + documentId.toString() + ');"><i class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete the callout" style="font-size:21px; margin-top:-3px; margin-left:16px;"></i></a>',
+                deleteButton,
                 documentType,
                 '<a href=' + encodeDownloadLink(downloadLink) + ' target="_blank" >' + clientFileName + '</a>',
                 moment(new Date()).format('DD/MM/YYYY HH:mm:ss A'),
-
             ]).draw();
 
             supportDocuments.push({
