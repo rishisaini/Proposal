@@ -643,7 +643,7 @@
                 }
                 DisableSubmitted();
             }
-            
+
         });
 
         function DisableSubmitted() {
@@ -727,7 +727,7 @@
             $lrlv.prop('disabled', !(deliveryTypeEditable && isLrlvAllowed));
             $lrlvLabel.css('opacity', isLrlvAllowed ? 1 : 0.5);
 
-            if (!isLrlvAllowed  && clearIfInvalid && $lrlv.is(':checked')) {
+            if (!isLrlvAllowed && clearIfInvalid && $lrlv.is(':checked')) {
                 $lrlv.prop('checked', false);
                 $('#DeliveryTypeLRLVHidden').val(false);
             }
@@ -1628,7 +1628,7 @@
             var documentType = $('#documentTypeSelectList  option:selected').text();
             var uploadedFileName = filePath.split('/').pop();
             var table = $('#proposalDocumentList').DataTable();
-            
+
             var deleteButton = $('#ShowDocumentDeleteBtn').val() == 'True' ? '<a href="#" onclick="return remove(this,' + documentId.toString() + ');"><i class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete the callout" style="font-size:21px; margin-top:-3px; margin-left:16px;"></i></a>' : '';
 
             table.row.add([
