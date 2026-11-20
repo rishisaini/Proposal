@@ -323,7 +323,7 @@ namespace AssetCare.Repository
                         result.FundsAvailability = dataToSave.AMUFunded == true ? null : result.FundsAvailability;
                         result.ProposalSFCID = dataToSave.ProposalSFCID;
                         result.RoomNumber = dataToSave.RoomNumber;
-                        ///result.PlannedMaintenance = dataToSave.PlannedMaintenance;
+                        result.PlannedMaintenance = dataToSave.PlannedMaintenance;
                         if (model.CallLogFITSID == null && model.DeliveryTypeLRLV && (model.Endorsements[2].Approved == true || model.Endorsements[3].Approved == true))
                         {
                             result.AwaitingActionBy = "None";
