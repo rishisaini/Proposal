@@ -1,4 +1,4 @@
-﻿using AssetCare.Model.Common;
+using AssetCare.Model.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
