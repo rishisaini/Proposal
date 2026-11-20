@@ -1,4 +1,4 @@
-﻿using AssetCare.Common;
+using AssetCare.Common;
 using AssetCare.Controllers;
 using AssetCare.Helpers;
 using AssetCare.Model.Common;
@@ -394,7 +394,7 @@ namespace AssetCare.Areas.FMWorks.Controllers
                 model.DeliveryTypeAMU = model.DeliveryTypeAMUHidden;
                 model.DeliveryTypeSSD = model.DeliveryTypeSSDHidden;
                 model.DeliveryTypeLRLV = model.DeliveryTypeLRLVHidden;
-                model.DeliveryTypePlannedMaintenance = model.DeliveryTypePlannedMaintenanceHidden;
+               // model.DeliveryTypePlannedMaintenance = model.DeliveryTypePlannedMaintenanceHidden;
 
                 // Prevent disabled entitlement checkboxes from overwriting existing values
                 if (model.Entitlements != null && model.ProposalId > 0)
@@ -1024,11 +1024,15 @@ namespace AssetCare.Areas.FMWorks.Controllers
 
 
                     }
-                    //Enable file upload for ASO/AMU before final proposal submission
-                    if ((CurrentUser.RoleID == "A" || CurrentUser.RoleID == "AO" || CurrentUser.RoleID == "D") && details.ProposalSubmissionDisabled != true && details.CallLogFITSID == null )
-                    { 
-                        userCapability.DetailSection += "btnUpload,RemoveFileDel";
-                        userCapability.SchoolSection += ",ProposalStatus";
+                    // Enable file upload for all users before final proposal submission
+                    if (details.ProposalSubmissionDisabled != true && details.CallLogFITSID == null)
+                    {
+                        userCapability.DetailSection += "btnUpload,";
+                        details.ShowDocumentDeleteBtn = false;
+                        if (CurrentUser.RoleID == "A" || CurrentUser.RoleID == "AO" || CurrentUser.RoleID == "D")
+                        {
+                            userCapability.SchoolSection += ",ProposalStatus";
+                        }
                     }
 
                     //if ((CurrentUser.RoleID == "A" || CurrentUser.RoleID == "AO" || CurrentUser.RoleID == "D") && details.ProposalSubmissionDisabled != true && details.CallLogFITSID == null && (details.GrantApplication || details.GrantApplicationHidden))
